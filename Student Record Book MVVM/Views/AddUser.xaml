@@ -1,0 +1,42 @@
+﻿<Window x:Class="Student_Record_Book_MVVM.View.AddUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Student_Record_Book_MVVM.View"
+        mc:Ignorable="d"
+        Title="Add User" Height="450" Width="400" >
+
+    <Window.Resources>
+        <ImageBrush x:Key="BackgroundBrush" ImageSource="/BackgroundImages/istockphoto-1213368040-612x612.jpg"/>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource BackgroundBrush}">
+        <Label Content="First Name"  Margin="25,33,0,350" Width="100" Height="NaN" Style="{StaticResource label}" HorizontalAlignment="Left" />
+        <TextBox  Text="{Binding FirstName}" Height="25" Width="200"  Margin="170,33,0,350" Style="{StaticResource textbox}" HorizontalAlignment="Left"/>
+
+        <Label Content="Last Name" Margin="25,94,0,270" Width="100" Height="NaN" Style="{StaticResource label}" HorizontalAlignment="Left" />
+        <TextBox  Text="{Binding LastName}" Height="25" Width="200"  Margin="170,94,0,270" Style="{StaticResource textbox}" RenderTransformOrigin="0.47,1.609" HorizontalAlignment="Left"/>
+
+        <Label Content="GPA" Style="{StaticResource label}"  Margin="25,155,0,230" Width="100" Height="NaN" HorizontalAlignment="Left"/>
+        <TextBox  Text="{Binding GPA}" Height="25" Width="200"  Margin="170,155,0,230" Style="{StaticResource textbox}" RenderTransformOrigin="0.47,1.609" HorizontalAlignment="Left"/>
+
+        <TextBox  Text="{Binding BirthDay}" Height="25" Width="200"  Margin="170,217,0,170" Style="{StaticResource textbox}" HorizontalAlignment="Left"/>
+        <Label Content="Birth Day" Style="{StaticResource label}" Margin="25,204,0,150" Width="100" Height="NaN" HorizontalAlignment="Left" />
+
+        <Label Content="Email" Margin="25,263,0,120" Width="100" Height="NaN" Style="{StaticResource label}" HorizontalAlignment="Left" />
+        <TextBox  Text="{Binding Email}" 
+                  Height="25" Width="200"  Margin="170,274,0,110" Style="{StaticResource textbox}" RenderTransformOrigin="0.47,1.609" HorizontalAlignment="Left"/>
+
+        <!-- Image Selection -->
+        <StackPanel Orientation="Horizontal" Margin="25,323,0,50">
+            <Button Command="{Binding SelectImageCommand}" Style="{StaticResource Button}" Height="30" Width="200" Content="Click here to add your Image" Margin="0 0 20 0" />
+            <Image x:Name="SelectedImage" Width="100" Height="100" Stretch="Uniform" />
+        </StackPanel>
+        <Button Command="{Binding AddUserCommand}" Style="{StaticResource Button}"
+                Height="30" Width="100" Content="Add" Margin="0,357,20,20" RenderTransformOrigin="0.54,-0.066" BorderBrush="White" BorderThickness="10">
+
+        </Button>
+
+    </Grid>
+</Window>

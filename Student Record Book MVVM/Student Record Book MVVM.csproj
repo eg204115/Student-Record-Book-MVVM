@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>Student_Record_Book_MVVM</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="BackgroundImages\istockphoto-1178026194-612x612.jpg" />
+    <None Remove="BackgroundImages\istockphoto-1213368040-612x612.jpg" />
+    <None Remove="Models\Images\4.png" />
+    <None Remove="Models\Images\6.png" />
+    <None Remove="Models\Images\7.png" />
+    <None Remove="Models\Images\8.png" />
+    <None Remove="Models\Images\9.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="BackgroundImages\istockphoto-1178026194-612x612.jpg" />
+    <Resource Include="BackgroundImages\istockphoto-1213368040-612x612.jpg" />
+    <Resource Include="Models\Images\4.png" />
+    <Resource Include="Models\Images\6.png" />
+    <Resource Include="Models\Images\7.png" />
+    <Resource Include="Models\Images\8.png" />
+    <Resource Include="Models\Images\9.png" />
+  </ItemGroup>
+
+</Project>

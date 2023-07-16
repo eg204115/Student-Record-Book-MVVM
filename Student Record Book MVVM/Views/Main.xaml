@@ -1,0 +1,166 @@
+﻿<Window x:Class="Student_Record_Book_MVVM.View.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Student_Record_Book_MVVM.View" 
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="Main" Height="650" Width="1000"
+        Name="mainwindow" WindowStyle="None">
+
+    <Window.Resources>
+        <ImageBrush x:Key="BackgroundBrush" ImageSource="/BackgroundImages/istockphoto-1213368040-612x612.jpg"/>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource BackgroundBrush}">
+        <Grid Background="Transparent" Margin="25,30,25,25">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="459*"/>
+                <ColumnDefinition Width="491*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Student Record Book   " FontSize="20" 
+                   FontWeight="DemiBold" HorizontalContentAlignment="Center" 
+                   Foreground="WhiteSmoke" FontStyle="Oblique"
+                   HorizontalAlignment="Left" Height="35" Width="350" 
+                   Margin="300,0,-50,550" Grid.ColumnSpan="2">
+
+            </Label>
+
+            <!-- Search Bar-->
+            <Label Margin="30">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="TextBoxSearch" Width="22" Height="30" RenderTransformOrigin="1.018,1.382">
+                        <Icon:PackIconMaterial.Foreground>
+                            <SolidColorBrush Color="White" />
+                        </Icon:PackIconMaterial.Foreground>
+                    </Icon:PackIconMaterial>
+
+
+                </StackPanel>
+            </Label>
+            <TextBox Name="FilterTextBox"  Height="30" Width="200" TextChanged="FilterTextBox_TextChanged"  Margin="63,28,180,500" VerticalContentAlignment="Center" >
+            </TextBox>
+
+
+            <!-- Add Button -->
+            <Button Style="{StaticResource addButton}"
+                    CommandParameter="{x:Reference Name =  mainwindow}" 
+                    Command="{Binding ShowWindowCommand}" Grid.ColumnSpan="2" 
+                    Margin="0,32,475,500" >
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                    <TextBlock Text="Add New Stdent "/>
+                </StackPanel>
+            </Button>
+
+            <!-- Delete Button -->
+            
+            <Button Style="{StaticResource deleteButton}"
+                    Command="{Binding DeleteCommand}" 
+                    CommandParameter="{Binding ElementName=UserList, Path=SelectedItem}"
+                    Margin="0,32,275,500" Grid.Column="1" >
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Delete" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                    <TextBlock Text="Delete Studant "/>
+                </StackPanel>
+            </Button>
+            <!-- Edit Button -->
+            <Button Style="{StaticResource editButton}" Name="editButton"
+                   Command="{Binding EditCommand}" 
+                    CommandParameter="{Binding ElementName=UserList, Path=SelectedItem}"
+                    Margin="0,32,75,500" Grid.Column="1" Width="150" >
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="BookEdit" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                    <TextBlock Text="Edit Student Data "/>
+                </StackPanel>
+            </Button>
+            <!-- Student Data List -->
+            <ListView Name="UserList" BorderBrush="#cdcdcd" ItemsSource="{Binding Users}" Margin="25 70 25 25" Padding="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Right">
+                <ListView.View>
+                    <GridView >
+                        <GridViewColumn Width="50"  Header="Image">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="FontSize" Value="16" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image x:Name="Image" Width="30" Height="30" Margin="0 0 0 0" Source="{Binding Image}" Stretch="Uniform" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="200" Header="Name">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="FontSize" Value="16" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Style="{StaticResource textblock}">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} {1}">
+                                                <Binding Path="FirstName"/>
+                                                <Binding Path="LastName"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+
+                        <GridViewColumn Width="200"  Header="GPA">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="FontSize" Value="16" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding GPA}" Style="{StaticResource textblock}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="200" Header="Birth Day">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="FontSize" Value="16" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Style="{StaticResource textblock}"  Text="{Binding BirthDay, StringFormat='{}{0:yyyy/MM/dd}'}" HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="200"  Header="Email">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="GridViewColumnHeader">
+                                    <Setter Property="FontSize" Value="16" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Email}" Style="{StaticResource textblock}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>
